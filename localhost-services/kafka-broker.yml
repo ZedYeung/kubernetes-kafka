@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: expose-kafka-broker
+  namespace: kafka
+spec:
+  selector:
+    app: kafka
+    kafka-broker-id: "0"
+  externalTrafficPolicy: Local
+  ports:
+  - protocol: TCP
+    targetPort: 9092
+    port: 30092
+    nodePort: 30092
+  type: NodePort
